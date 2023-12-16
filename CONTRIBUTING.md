@@ -34,7 +34,7 @@ https://www.conventionalcommits.org/ or check out the
 
 ## Formatting
 
-Before making a pull request, make sure that the the commits follows the format used by the project.
+Before making a pull request, make sure that the commits follows the format used by the project.
 
 - Check formatting
 
