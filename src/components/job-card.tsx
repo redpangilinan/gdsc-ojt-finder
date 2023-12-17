@@ -1,6 +1,5 @@
 import { Job } from "@/types"
 
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -15,26 +14,30 @@ interface JobCardProps {
 
 export function JobCard({ job }: JobCardProps) {
   return (
-    <Card>
-      <CardHeader className="space-y-1">
-        <div className="md:flex md:justify-between">
-          <h1 className="text-xl font-bold">{job.title}</h1>
-          <CardDescription className="text-sm text-muted-foreground">
-            {job.date}
+    <Card className="flex flex-col justify-between">
+      <div>
+        <CardHeader className="space-y-1">
+          <div className="md:flex md:justify-between">
+            <a
+              href={job.url}
+              target="_blank"
+              className="text-xl font-bold hover:underline"
+            >
+              {job.title}
+            </a>
+          </div>
+          <CardDescription>{job.company}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <CardDescription className="text-md">{job.location}</CardDescription>
+          <CardDescription className="text-md">{job.salary}</CardDescription>
+          <CardDescription className="text-md">
+            {job.description}
           </CardDescription>
-        </div>
-        <CardDescription className="text-sm text-muted-foreground">
-          {job.company}
-        </CardDescription>
-        <CardDescription className="text-sm text-muted-foreground">
-          {job.location}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>{job.description}</p>
-      </CardContent>
+        </CardContent>
+      </div>
       <CardFooter>
-        <Button variant="outline">Learn more</Button>
+        <CardDescription>{job.date}</CardDescription>
       </CardFooter>
     </Card>
   )

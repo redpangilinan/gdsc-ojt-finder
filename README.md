@@ -22,13 +22,7 @@ pnpm install
 cp .env.example .env.local
 ```
 
-4. Install puppeteer chrome browser.
-
-```bash
-pnpm dlx puppeteer browsers install chrome
-```
-
-5. Start the development server.
+4. Start the development server.
 
 ```bash
 pnpm dev
