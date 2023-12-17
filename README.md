@@ -2,6 +2,8 @@
 
 Discover and explore internship opportunities seamlessly.
 
+> **Notice**: This repository is early into development and is work in progress.
+
 ## Running Locally
 
 1. Clone the repository.
