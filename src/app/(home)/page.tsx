@@ -16,7 +16,7 @@ export default async function Home() {
             <JobCard key={index} job={job} />
           ))}
         </div>
-        <aside className="border-l border-gray-200 p-6">
+        <aside className="space-y-4 border-l border-gray-200 p-6">
           <h2 className="text-xl font-bold">Discover internships</h2>
           <p className="text-muted-foreground">
             Discover and explore internship opportunities seamlessly.
