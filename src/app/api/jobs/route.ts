@@ -1,17 +1,13 @@
 import { Job } from "@/types"
 import * as cheerio from "cheerio"
+import wretch from "wretch"
 
 export async function GET() {
   try {
     const baseUrl =
       "https://www.jobstreet.com.ph/internship-jobs-in-information-communication-technology?sortmode=ListedDate"
-    const response = await fetch(baseUrl, {
-      headers: {
-        "Cache-Control": "no-cache",
-      },
-    })
-    const html = await response.text()
-    const $ = cheerio.load(html)
+    const response = await wretch(baseUrl, { cache: "no-store" }).get().text()
+    const $ = cheerio.load(response)
     const jobs: Job[] = []
 
     $("article").each((index, element) => {
