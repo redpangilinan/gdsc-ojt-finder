@@ -17,15 +17,13 @@ export function JobCard({ job }: JobCardProps) {
     <Card className="flex flex-col justify-between">
       <div>
         <CardHeader className="space-y-1">
-          <div className="md:flex md:justify-between">
-            <a
-              href={job.url}
-              target="_blank"
-              className="text-xl font-bold hover:underline"
-            >
-              {job.title}
-            </a>
-          </div>
+          <a
+            href={job.url}
+            target="_blank"
+            className="text-xl font-bold hover:underline"
+          >
+            {job.title}
+          </a>
           <CardDescription>{job.company}</CardDescription>
         </CardHeader>
         <CardContent>
