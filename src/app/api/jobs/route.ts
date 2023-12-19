@@ -4,9 +4,13 @@ import wretch from "wretch"
 
 export async function GET() {
   try {
+    const timestamp = new Date().getTime()
     const baseUrl =
       "https://www.jobstreet.com.ph/internship-jobs-in-information-communication-technology?sortmode=ListedDate"
-    const response = await wretch(baseUrl, { cache: "no-store" }).get().text()
+    const timestampUrl = `${baseUrl}&timestamp=${timestamp}`
+    const response = await wretch(timestampUrl, { cache: "no-store" })
+      .get()
+      .text()
     const $ = cheerio.load(response)
     const jobs: Job[] = []
 
