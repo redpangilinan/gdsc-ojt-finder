@@ -3,15 +3,15 @@ import * as cheerio from "cheerio"
 import wretch from "wretch"
 
 export async function GET() {
-  try {
-    const timestamp = new Date().getTime()
+  async function fetchHtml(url: string) {
+    const html = await wretch(url).get().text()
+    return cheerio.load(html)
+  }
+
+  async function getJobs() {
     const baseUrl =
       "https://www.jobstreet.com.ph/internship-jobs-in-information-communication-technology?sortmode=ListedDate"
-    const timestampUrl = `${baseUrl}&timestamp=${timestamp}`
-    const response = await wretch(timestampUrl, { cache: "no-store" })
-      .get()
-      .text()
-    const $ = cheerio.load(response)
+    const $ = await fetchHtml(baseUrl)
     const jobs: Job[] = []
 
     $("article").each((index, element) => {
@@ -53,7 +53,12 @@ export async function GET() {
       jobs.push(job)
     })
 
-    return new Response(JSON.stringify(jobs))
+    return jobs
+  }
+
+  try {
+    const response = await getJobs()
+    return new Response(JSON.stringify(response))
   } catch (error) {
     console.error(error)
     return new Response(null, { status: 500 })
