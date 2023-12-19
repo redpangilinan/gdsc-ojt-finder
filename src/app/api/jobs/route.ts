@@ -4,7 +4,9 @@ import wretch from "wretch"
 
 export async function GET() {
   async function fetchHtml(url: string) {
-    const html = await wretch(url).get().text()
+    const time = new Date().getTime()
+    const newUrl = `${url}&t=${time}`
+    const html = await wretch(newUrl).get().text()
     return cheerio.load(html)
   }
 
