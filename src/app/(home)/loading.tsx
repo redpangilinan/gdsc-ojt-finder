@@ -7,7 +7,7 @@ export default async function Home() {
       <Navbar />
       <section className="container grid items-start gap-12 p-8 md:grid-cols-[1fr,20rem]">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {[...Array(6)].map((_, index) => (
+          {[...Array(8)].map((_, index) => (
             <JobCardSkeleton key={index} />
           ))}
         </div>
