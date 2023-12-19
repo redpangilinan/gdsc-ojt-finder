@@ -60,7 +60,13 @@ export async function GET() {
 
   try {
     const response = await getJobs()
-    return new Response(JSON.stringify(response))
+
+    const headers = {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store, max-age=0",
+    }
+
+    return new Response(JSON.stringify(response), { headers })
   } catch (error) {
     console.error(error)
     return new Response(null, { status: 500 })
