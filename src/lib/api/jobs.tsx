@@ -10,6 +10,6 @@ const api = wretch(apiUrl, {
   .errorType("json")
   .resolve((r) => r.json())
 
-export const getJobs = async () => {
-  return await api.get("/api/jobs")
+export const getJobs = async (params: string) => {
+  return await api.get(`/api/jobs?sort=${params}`)
 }

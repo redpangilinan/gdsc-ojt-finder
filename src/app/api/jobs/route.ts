@@ -1,8 +1,9 @@
+import { NextRequest } from "next/server"
 import { Job } from "@/types"
 import * as cheerio from "cheerio"
 import wretch from "wretch"
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   async function fetchHtml(url: string) {
     const time = new Date().getTime()
     const newUrl = `${url}&t=${time}`
@@ -11,8 +12,9 @@ export async function GET() {
   }
 
   async function getJobs() {
-    const baseUrl =
-      "https://www.jobstreet.com.ph/internship-jobs-in-information-communication-technology?sortmode=ListedDate"
+    const baseUrl = `https://www.jobstreet.com.ph/internship-jobs-in-information-communication-technology?sortmode=${request.nextUrl.searchParams.get(
+      "sort"
+    )}`
     const $ = await fetchHtml(baseUrl)
     const jobs: Job[] = []
 
@@ -63,7 +65,6 @@ export async function GET() {
 
     const headers = {
       "Content-Type": "application/json",
-      "Cache-Control": "no-store, max-age=0",
     }
 
     return new Response(JSON.stringify(response), { headers })
