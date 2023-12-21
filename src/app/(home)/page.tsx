@@ -20,7 +20,7 @@ export default async function Home({ searchParams }: HomeProps) {
       <section className="container grid items-start gap-12 p-8 lg:grid-cols-[1fr,20rem]">
         <div className="space-y-4">
           <div className="flex justify-end">
-            <Sort />
+            <Sort params={searchParams.sort} />
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {data.map((job, index) => (

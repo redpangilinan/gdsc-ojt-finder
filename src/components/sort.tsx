@@ -13,9 +13,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-export function Sort() {
+interface SortProps {
+  params: string
+}
+
+export function Sort({ params }: SortProps) {
   const router = useRouter()
-  const [sort, setSort] = React.useState("")
+  const defaultSort = params === "KeywordRelevance" ? "Relevance" : "Date"
+  const [sort, setSort] = React.useState(defaultSort)
 
   const handleSortChange = (type: string) => {
     if (type === "Relevance") {

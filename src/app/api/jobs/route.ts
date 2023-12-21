@@ -11,10 +11,18 @@ export async function GET(request: NextRequest) {
     return cheerio.load(html)
   }
 
+  function getSortMode() {
+    const sort = request.nextUrl.searchParams.get("sort")
+
+    if (sort === "KeywordRelevance") {
+      return sort
+    }
+
+    return "ListedDate"
+  }
+
   async function getJobs() {
-    const baseUrl = `https://www.jobstreet.com.ph/internship-jobs-in-information-communication-technology?sortmode=${request.nextUrl.searchParams.get(
-      "sort"
-    )}`
+    const baseUrl = `https://www.jobstreet.com.ph/internship-jobs-in-information-communication-technology?sortmode=${getSortMode()}`
     const $ = await fetchHtml(baseUrl)
     const jobs: Job[] = []
 
